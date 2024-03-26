@@ -1,0 +1,19 @@
+{
+  "name": "Default CRM",
+  "short_name": "Default CRM",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007d88",
+  "icons": [
+    {
+      "src": "/companies/default/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "description": "Default CRM",
+  "dir": "ltr",
+  "lang": "en",
+  "orientation": "any"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Asser Bishvil CRM",
+  "short_name": "Asser Bishvil CRM",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007d88",
+  "icons": [
+    {
+      "src": "/companies/abf/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "description": "Asser Bishvil CRM",
+  "dir": "ltr",
+  "lang": "en",
+  "orientation": "any"
+}

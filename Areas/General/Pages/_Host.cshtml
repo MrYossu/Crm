@@ -1,0 +1,117 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@namespace Crm.Areas.General.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="~/" />
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap||Material+Icons" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="Crm.styles.css" rel="stylesheet" />
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+  </head>
+  <body>
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+
+    <div id="blazor-error-ui">
+      <div class="the-ui text-center px-3 fs-5">
+        <div>An error has occurred.</div>
+        <div>Please refresh to continue.</div>
+        <div class="pt-3">
+          <a href="" class="reload">
+            <i class="fad fa-redo-alt me-2"></i>Refresh
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <environment exclude="Development">
+      <script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
+    </environment>
+    <script>navigator.serviceWorker.register('service-worker.js');</script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="_content/Telerik.UI.for.Blazor/js/telerik-blazor.js"></script>
+    <script src="/js/feedback.js"></script>
+    <script>
+    $(function () {
+      $("body").on("focus", "div[class*='igwindow']", function () {
+        // Add active class to window
+        $('div[class*="igwindow"]').each(function (i, obj) {
+          $(this).removeClass("active");
+        });
+        this.classList.add("active");
+
+        $.each(this.classList, function (i, name) {
+          if (name.indexOf("igwindow") === 0) {
+            var bits = name.split('_');
+            _dotNetObject.invokeMethodAsync('SetWindowTitle', bits[1], bits[2]);
+          }
+        });
+      });
+    });
+
+    var _dotNetObject;
+    function saveObjectReference(dotNetObject) {
+      _dotNetObject = dotNetObject;
+    }
+
+    function getActive(closingClass) {
+      var z = 0;
+      var c;
+      $("div[class*='igwindow']").each(function () {
+        if (this.style.zIndex > z && !$(this).hasClass(closingClass)) {
+          z = this.style.zIndex;
+          c = this.classList;
+        }
+      });
+      var windowClass = "";
+      if (c != undefined) {
+        for (var i = 0; i < c.length; i++) {
+          if (c[i].startsWith("igwindow")) {
+            windowClass = c[i];
+          }
+        }
+      }
+      return windowClass;
+    }
+  </script>
+    <script>
+      var lockResolver;
+      if (navigator && navigator.locks && navigator.locks.request) {
+        const promise = new Promise((res) => {
+          lockResolver = res;
+        });
+              
+        navigator.locks.request('InpiredGivingCrm', { mode: "shared" }, () => {
+          return promise;
+        });
+      }
+    </script>
+
+    @* NOTE: Any JS files MUST be loaded before Blazor - i.e. above this line *@
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script>
+    Blazor.start({
+      configureSignalR: function (builder) {
+        let c = builder.build();
+        c.serverTimeoutInMilliseconds = 60000;
+        c.keepAliveIntervalInMilliseconds = 5000;
+        builder.build = () => {
+          return c;
+        };
+      }
+    }).then(() => {
+      Blazor.defaultReconnectionHandler._reconnectCallback = function (d) {
+        document.location.reload();
+      };
+    });
+  </script>
+  </body>
+</html>

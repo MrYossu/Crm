@@ -1,0 +1,21 @@
+﻿@page "/"
+
+<PageTitle>Window manager</PageTitle>
+
+<div class="page">
+  <main class="position-relative">
+    <article class="content px-4 position-relative" style="padding: 20px">
+      <h1>Window count: @Windows.Count</h1>
+      <TelerikButton OnClick="OpenTest">Window</TelerikButton>
+      <ul>
+      @foreach (WindowParameters w in Windows) {
+        Console.WriteLine($"WindowManager loop - {DateTime.Now.ToLongTimeString()}");
+        <li>@w.Type.Name - Position: (@w.Left, @w.Top), Size: (@w.Width, @w.Height)</li>
+        <DynamicComponent Type="@w.Type" Parameters="@w.GetDictionary()" />
+      }
+      </ul>
+    </article>
+
+    <div class="window-overlay"></div>
+  </main>
+</div>

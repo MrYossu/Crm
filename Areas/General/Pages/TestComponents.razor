@@ -1,0 +1,22 @@
+﻿@inherits WindowBase
+
+<h3>TestComponents</h3>
+
+<TelerikWindow @ref="@WindowRef">
+  <WindowActions>
+    <WindowAction Name="Close" OnClick="@Close" />
+  </WindowActions>
+  <WindowTitle>Test window</WindowTitle>
+  <WindowContent>
+    <h3>Test</h3>
+    <p>Nothing to see here, move along</p>
+  </WindowContent>
+</TelerikWindow>
+
+@code {
+
+  public const string WindowTitle = "Window for testing";
+  public override async Task SetParametersAsync(ParameterView parameters) =>
+    Console.WriteLine($"Test.SetParametersAsync - {DateTime.Now.ToLongTimeString()}");
+
+}
