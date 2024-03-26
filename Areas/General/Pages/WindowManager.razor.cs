@@ -120,8 +120,15 @@ public partial class WindowManager {
     return Open(wp);
   }
 
+  private Task OpenJim() {
+    Console.WriteLine("\n\nOpenJim");
+    WindowParameters wp = new(this, typeof(Jim), "jim2", "Jim Spriggs", _ => { }, _ => Task.CompletedTask, _ => Task.CompletedTask) { Top = "500px", Left = "500px", Height = "300px", Width = "300px" };
+    return OpenAnotherWindow(wp);
+  }
+
   private Task OpenTest() {
-    WindowParameters wp = new(typeof(TestComponents)) { Top = "200px", Left = "200px", Height = "300px", Width = "300px" };
+    Console.WriteLine("\n\nOpenTest");
+    WindowParameters wp = new(this, typeof(TestComponents), "test", "Test Window", _ => { }, _ => Task.CompletedTask, _ => Task.CompletedTask) { Top = "200px", Left = "200px", Height = "300px", Width = "300px" };
     return OpenAnotherWindow(wp);
   }
 }

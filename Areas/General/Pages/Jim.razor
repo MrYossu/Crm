@@ -1,6 +1,23 @@
-﻿@page "/jim"
-<h3>Jim</h3>
+﻿@inherits WindowBase
+
+<TelerikWindow @ref="@WindowRef">
+  <WindowActions>
+    <WindowAction Name="Close" OnClick="@Close" />
+  </WindowActions>
+  <WindowTitle>Jim window</WindowTitle>
+  <WindowContent>
+    <div style="padding:20px">
+      <h3>Jim</h3>
+      <p>Nothing to see here, move along</p>
+    </div>
+  </WindowContent>
+</TelerikWindow>
 
 @code {
+
+  public const string WindowTitle = "Jim Window";
+
+  protected override async Task OnParametersSetAsync() =>
+    Console.WriteLine($"Jim.OnParametersSetAsync - {DateTime.Now.ToLongTimeString()}");
 
 }

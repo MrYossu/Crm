@@ -6,7 +6,8 @@
   <main class="position-relative">
     <article class="content px-4 position-relative" style="padding: 20px">
       <h1>Window count: @Windows.Count</h1>
-      <TelerikButton OnClick="OpenTest">Window</TelerikButton>
+      <TelerikButton OnClick="OpenTest">Window</TelerikButton>&nbsp;<TelerikButton OnClick="OpenJim">Jim</TelerikButton>
+
       <ul>
       @foreach (WindowParameters w in Windows) {
         Console.WriteLine($"WindowManager loop - {DateTime.Now.ToLongTimeString()}");
