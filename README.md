@@ -2,7 +2,7 @@
 
 OK, so maybe that's a slight exaggeration, but it's a lot!
 
-We are writing a Blazoe application that needs to mimic a multi-window interface. We added a window manager and some base classes, and were able to create the individual windows, and have the window manager handle them correctly. Windows could be opened, moved and closed, and their positions restored next time the app was started.
+We are writing a Blazor application that needs to mimic a multi-window interface. We added a window manager and some base classes, and were able to create the individual windows, and have the window manager handle them correctly. Windows could be opened, moved and closed, and their positions restored next time the app was started.
 
 Before anyone credits us with super-intelligence, we had a major head start from [a blog post about handling dynamic components in Blazor](https://mariomucalo.com/dynamic-components-in-blazor-with-parameters-and-event-handling/). We still had a major amount of work on top of that, but it was a huge help in getting going.
 
